@@ -1,0 +1,46 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.wonders.cToolKit</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
+    <name>CToolKit</name>
+
+    <!-- Plugin icon -->
+    <!--<icon> META-INF/yToolBox.png</icon>-->
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor url="https://github.com/wonders" email="yangkai9546@163.com" >yk</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
+    <description><![CDATA[
+        A handy toolbox plugin for IntelliJ IDEA with JSON formatting, URL encoding/decoding, Base64 encoding/decoding, encryption/decryption, random string generation, and JWT decoding capabilities.
+    ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+    <!--<depends>com.intellij.java</depends>-->
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="CToolKit" secondary="true" anchor="right" factoryClass="com.wonders.ctoolkit.ui.CToolKitToolWindowFactory"/>
+    </extensions>
+
+    <actions>
+        <group id="com.wonders.ctoolkit.ToolboxGroup" text="CToolKit" description="CToolKit Toolbox">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <action id="com.wonders.ctoolkit.MainWindowAction"
+                    class="com.wonders.ctoolkit.actions.MainWindowAction"
+                    text="Open Main Window"
+                    description="Open CToolKit Main Window"/>
+            <action id="com.wonders.ctoolkit.JwtDecodeAction"
+                    class="com.wonders.ctoolkit.actions.JwtDecodeAction"
+                    text="JWT Decode"
+                    description="Decode JWT Token"/>
+        </group>
+    </actions>
+</idea-plugin>
