@@ -4,8 +4,8 @@ plugins {
     id("org.jetbrains.intellij.platform") version "2.5.0"
 }
 
-group = "com.wonders"
-version = "1.0-SNAPSHOT"
+group = "com.wonders.cToolKit"
+version = "1.0.0"
 
 repositories {
     maven { url = uri("https://maven.aliyun.com/repository/jetbrains") }

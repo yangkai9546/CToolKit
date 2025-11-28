@@ -8,10 +8,10 @@
     <name>CToolKit</name>
 
     <!-- Plugin icon -->
-    <!--<icon> META-INF/yToolBox.png</icon>-->
+    <!--<icon-path>/META-INF/cToolKit.png</icon-path>-->
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor url="https://github.com/wonders" email="yangkai9546@163.com" >yk</vendor>
+    <vendor url="https://github.com/yangkai9546/CToolKit" email="yangkai9546@163.com" >yk9546</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
@@ -22,6 +22,7 @@
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <idea-version since-build="251" until-build="252.*"/>
     <!--<depends>com.intellij.java</depends>-->
 
     <!-- Extension points defined by the plugin.
@@ -36,11 +37,10 @@
             <action id="com.wonders.ctoolkit.MainWindowAction"
                     class="com.wonders.ctoolkit.actions.MainWindowAction"
                     text="Open Main Window"
-                    description="Open CToolKit Main Window"/>
-            <action id="com.wonders.ctoolkit.JwtDecodeAction"
-                    class="com.wonders.ctoolkit.actions.JwtDecodeAction"
-                    text="JWT Decode"
-                    description="Decode JWT Token"/>
+                    description="Open CToolKit Main Window"
+                    icon="/META-INF/cToolKit.png"
+            />
         </group>
     </actions>
+    <change-notes><![CDATA[1.0.0]]></change-notes>
 </idea-plugin>
