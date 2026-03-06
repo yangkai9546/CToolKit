@@ -33,38 +33,37 @@ public class RandomStringPanel extends BaseToolPanel {
     @Override
     protected JComponent createAdditionalComponents() {
         // Create input panel for options
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
-        inputPanel.setBorder(BorderFactory.createTitledBorder("生成参数"));
+        JPanel optionsPanel = new JPanel();
+        optionsPanel.setLayout(new BoxLayout(optionsPanel, BoxLayout.Y_AXIS));
+        optionsPanel.setBorder(BorderFactory.createTitledBorder("生成参数"));
 
         // Length panel
         JPanel lengthPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         lengthPanel.add(new JLabel("长度:"));
         lengthField = new JTextField("12", 10);
         lengthPanel.add(lengthField);
-        inputPanel.add(lengthPanel);
+        optionsPanel.add(lengthPanel);
 
         // Character options panel
-        JPanel optionsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        optionsPanel.setBorder(BorderFactory.createTitledBorder("字符选项"));
+        JPanel charOptionsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         uppercaseCheckBox = new JCheckBox("大写字母", true);
         lowercaseCheckBox = new JCheckBox("小写字母", true);
         digitsCheckBox = new JCheckBox("数字", true);
         specialCharsCheckBox = new JCheckBox("特殊符号", false);
-        optionsPanel.add(uppercaseCheckBox);
-        optionsPanel.add(lowercaseCheckBox);
-        optionsPanel.add(digitsCheckBox);
-        optionsPanel.add(specialCharsCheckBox);
-        inputPanel.add(optionsPanel);
+        charOptionsPanel.add(uppercaseCheckBox);
+        charOptionsPanel.add(lowercaseCheckBox);
+        charOptionsPanel.add(digitsCheckBox);
+        charOptionsPanel.add(specialCharsCheckBox);
+        optionsPanel.add(charOptionsPanel);
 
         // Count panel
         JPanel countPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         countPanel.add(new JLabel("生成数量 (最多10个):"));
         countField = new JTextField("5", 10);
         countPanel.add(countField);
-        inputPanel.add(countPanel);
+        optionsPanel.add(countPanel);
 
-        return inputPanel;
+        return optionsPanel;
     }
 
     @Override
@@ -94,23 +93,13 @@ public class RandomStringPanel extends BaseToolPanel {
     }
 
     @Override
-    protected JPanel createMainPanel() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-        // Use the input panel from BaseToolPanel for the actual string input/output
-        panel.add(createInputPanel());
-
-        // Use the output panel from BaseToolPanel
-        JPanel outputPanel = createOutputPanel();
+    protected JPanel createOutputPanel() {
+        JPanel outputPanel = super.createOutputPanel();
         // Increase rows for output text area to accommodate multiple strings
         if (outputTextArea != null) {
             outputTextArea.setRows(15);
-            outputTextArea.setColumns(50);
         }
-        panel.add(outputPanel);
-
-        return panel;
+        return outputPanel;
     }
 
     private void generateRandomStrings() {

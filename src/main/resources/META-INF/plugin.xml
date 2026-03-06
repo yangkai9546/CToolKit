@@ -8,7 +8,7 @@
     <name>CToolKit</name>
 
     <!-- Plugin icon -->
-    <!--<icon-path>/META-INF/cToolKit.png</icon-path>-->
+    <icon class="com.wonders.ctoolkit.CToolKitIcons" />
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor url="https://github.com/yangkai9546/CToolKit" email="yangkai9546@163.com" >yk9546</vendor>
@@ -28,7 +28,8 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="CToolKit" secondary="true" anchor="right" factoryClass="com.wonders.ctoolkit.ui.CToolKitToolWindowFactory"/>
+        <toolWindow id="CToolKit" anchor="right" factoryClass="com.wonders.ctoolkit.ui.CToolKitToolWindowFactory"
+                     icon="/META-INF/icons/ctoolkit40x40.png"/>
     </extensions>
 
     <actions>
@@ -38,7 +39,7 @@
                     class="com.wonders.ctoolkit.actions.MainWindowAction"
                     text="Open Main Window"
                     description="Open CToolKit Main Window"
-                    icon="/META-INF/cToolKit.png"
+                    icon="/META-INF/icons/ctoolkit40x40.png"
             />
         </group>
     </actions>

@@ -22,14 +22,58 @@ public class JwtPanel extends BaseToolPanel {
     private JTextArea headerTextArea;
     private JTextArea payloadTextArea;
     private JTextArea signatureTextArea;
-    
+
     public JwtPanel() {
         setName("JWT解码");
     }
 
     @Override
     protected JComponent createAdditionalComponents() {
-        return null;
+        // Create a panel to hold the JWT-specific output areas
+        JPanel jwtOutputPanel = new JPanel();
+        jwtOutputPanel.setLayout(new BoxLayout(jwtOutputPanel, BoxLayout.Y_AXIS));
+
+        // Header panel
+        JPanel headerPanel = new JPanel(new BorderLayout());
+        headerPanel.setBorder(BorderFactory.createTitledBorder("Header"));
+        headerPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
+
+        headerTextArea = new JTextArea(5, 40);
+        headerTextArea.setLineWrap(true);
+        headerTextArea.setWrapStyleWord(true);
+        headerTextArea.setEditable(false);
+        JScrollPane headerScrollPane = new JScrollPane(headerTextArea);
+        headerPanel.add(headerScrollPane, BorderLayout.CENTER);
+
+        // Payload panel
+        JPanel payloadPanel = new JPanel(new BorderLayout());
+        payloadPanel.setBorder(BorderFactory.createTitledBorder("Payload"));
+        payloadPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
+
+        payloadTextArea = new JTextArea(5, 40);
+        payloadTextArea.setLineWrap(true);
+        payloadTextArea.setWrapStyleWord(true);
+        payloadTextArea.setEditable(false);
+        JScrollPane payloadScrollPane = new JScrollPane(payloadTextArea);
+        payloadPanel.add(payloadScrollPane, BorderLayout.CENTER);
+
+        // Signature panel
+        JPanel signaturePanel = new JPanel(new BorderLayout());
+        signaturePanel.setBorder(BorderFactory.createTitledBorder("Signature"));
+        signaturePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+
+        signatureTextArea = new JTextArea(3, 40);
+        signatureTextArea.setLineWrap(true);
+        signatureTextArea.setWrapStyleWord(true);
+        signatureTextArea.setEditable(false);
+        JScrollPane signatureScrollPane = new JScrollPane(signatureTextArea);
+        signaturePanel.add(signatureScrollPane, BorderLayout.CENTER);
+
+        jwtOutputPanel.add(headerPanel);
+        jwtOutputPanel.add(payloadPanel);
+        jwtOutputPanel.add(signaturePanel);
+
+        return jwtOutputPanel;
     }
 
     @Override
@@ -74,74 +118,6 @@ public class JwtPanel extends BaseToolPanel {
         buttonPanel.add(copySignatureButton);
 
         return buttonPanel;
-    }
-
-    // Override createMainPanel to customize the layout for JWT panel
-    @Override
-    protected JPanel createMainPanel() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-        // Create a custom input panel for JWT (single line input)
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
-        inputPanel.setBorder(BorderFactory.createTitledBorder("JWT Token 输入"));
-
-        // Properly initialize the inputTextArea field from BaseToolPanel
-        // This ensures that the inputTextArea is not null and can be accessed by BaseToolPanel methods
-        if (inputTextArea == null) {
-            inputTextArea = new JTextArea(3, 50);
-            inputTextArea.setLineWrap(true);
-            inputTextArea.setWrapStyleWord(true);
-        }
-        JScrollPane inputScrollPane = new JScrollPane(inputTextArea);
-        inputPanel.add(inputScrollPane);
-
-        panel.add(inputPanel);
-
-        // Header panel
-        JPanel headerPanel = new JPanel();
-        headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
-        headerPanel.setBorder(BorderFactory.createTitledBorder("Header"));
-
-        headerTextArea = new JTextArea(5, 50);
-        headerTextArea.setLineWrap(true);
-        headerTextArea.setWrapStyleWord(true);
-        headerTextArea.setEditable(false);
-        JScrollPane headerScrollPane = new JScrollPane(headerTextArea);
-        headerPanel.add(headerScrollPane);
-
-        panel.add(headerPanel);
-
-        // Payload panel
-        JPanel payloadPanel = new JPanel();
-        payloadPanel.setLayout(new BoxLayout(payloadPanel, BoxLayout.Y_AXIS));
-        payloadPanel.setBorder(BorderFactory.createTitledBorder("Payload"));
-
-        payloadTextArea = new JTextArea(8, 50);
-        payloadTextArea.setLineWrap(true);
-        payloadTextArea.setWrapStyleWord(true);
-        payloadTextArea.setEditable(false);
-        JScrollPane payloadScrollPane = new JScrollPane(payloadTextArea);
-        payloadPanel.add(payloadScrollPane);
-
-        panel.add(payloadPanel);
-
-        // Signature panel
-        JPanel signaturePanel = new JPanel();
-        signaturePanel.setLayout(new BoxLayout(signaturePanel, BoxLayout.Y_AXIS));
-        signaturePanel.setBorder(BorderFactory.createTitledBorder("Signature"));
-
-        signatureTextArea = new JTextArea(3, 50);
-        signatureTextArea.setLineWrap(true);
-        signatureTextArea.setWrapStyleWord(true);
-        signatureTextArea.setEditable(false);
-        JScrollPane signatureScrollPane = new JScrollPane(signatureTextArea);
-        signaturePanel.add(signatureScrollPane);
-
-        panel.add(signaturePanel);
-
-        return panel;
     }
 
     private void decodeJwt() {
