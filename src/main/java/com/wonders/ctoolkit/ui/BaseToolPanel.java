@@ -1,7 +1,12 @@
 package com.wonders.ctoolkit.ui;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public abstract class BaseToolPanel extends JPanel {
 
@@ -66,6 +71,7 @@ public abstract class BaseToolPanel extends JPanel {
         outputTextArea.setLineWrap(true);
         outputTextArea.setWrapStyleWord(true);
         outputTextArea.setEditable(false);
+        addCopyPopup(outputTextArea);
         JScrollPane outputScrollPane = new JScrollPane(outputTextArea);
         outputScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         outputScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -91,5 +97,35 @@ public abstract class BaseToolPanel extends JPanel {
 
     protected String getInputText() {
         return inputTextArea != null ? inputTextArea.getText() : "";
+    }
+
+    private void addCopyPopup(JTextComponent textComponent) {
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem copyItem = new JMenuItem("复制");
+        copyItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textComponent.copy();
+            }
+        });
+        popupMenu.add(copyItem);
+
+        textComponent.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                showPopup(e);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                showPopup(e);
+            }
+
+            private void showPopup(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    popupMenu.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+        });
     }
 }

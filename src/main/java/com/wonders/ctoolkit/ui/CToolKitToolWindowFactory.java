@@ -28,6 +28,8 @@ public class CToolKitToolWindowFactory implements ToolWindowFactory {
         CryptoPanel cryptoPanel = new CryptoPanel();
         RandomStringPanel randomStringPanel = new RandomStringPanel();
         JwtPanel jwtPanel = new JwtPanel();
+        TimestampPanel timestampPanel = new TimestampPanel();
+        QrCodePanel qrCodePanel = new QrCodePanel();
 
         // Add tabs for each tool with Chinese titles
         tabbedPane.addTab("JSON格式化", jsonPanel);
@@ -36,6 +38,8 @@ public class CToolKitToolWindowFactory implements ToolWindowFactory {
         tabbedPane.addTab("加解密", cryptoPanel);
         tabbedPane.addTab("随机字符串", randomStringPanel);
         tabbedPane.addTab("JWT解码", jwtPanel);
+        tabbedPane.addTab("时间戳转换", timestampPanel);
+        tabbedPane.addTab("二维码生成器", qrCodePanel);
 
         mainPanel.add(tabbedPane, BorderLayout.CENTER);
 

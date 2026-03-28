@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.wonders.cToolKit"
-version = "1.0.1"
+version = "1.0.3"
 
 repositories {
     maven { url = uri("https://maven.aliyun.com/repository/jetbrains") }
@@ -32,6 +32,10 @@ dependencies {
     // Add Gson dependency for JSON formatting
     implementation("com.google.code.gson:gson:2.10.1")
 
+    // Add ZXing dependency for QR code generation
+    implementation("com.google.zxing:core:3.5.3")
+    implementation("com.google.zxing:javase:3.5.3")
+
     // Add JUnit for testing
     testImplementation("junit:junit:4.13.2")
 }
@@ -43,9 +47,11 @@ intellijPlatform {
         }
 
         changeNotes = """
-            Initial version with JSON formatting, URL encoding/decoding, 
-            Base64 encoding/decoding, encryption/decryption, 
-            and random string generation capabilities.
+            1.0.3:
+            - 新增时间戳转换工具：支持秒/毫秒自动识别，实时转换，时区选择（默认中国时区）
+            - 新增二维码生成器：支持输入链接或文字生成二维码，可自定义尺寸，支持保存为PNG
+            - 输出区域支持右键菜单复制
+            - 修复主窗口 GridLayout 初始渲染不完整的问题
         """.trimIndent()
     }
 }
